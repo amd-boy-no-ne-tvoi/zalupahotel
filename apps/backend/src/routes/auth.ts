@@ -7,6 +7,9 @@ import { authenticate } from '../middleware/auth.js'
 
 const REFRESH_COOKIE = 'refresh_token'
 const COOKIE_MAX_AGE = 30 * 24 * 60 * 60 * 1000
+// Decoupled from NODE_ENV: a production deploy without HTTPS (e.g. bare-IP demo)
+// still needs secure=false, since browsers drop Secure cookies sent over plain HTTP.
+const COOKIE_SECURE = process.env.COOKIE_SECURE === 'false' ? false : process.env.NODE_ENV === 'production'
 
 const registerSchema = z.object({
   email: z.string().email(),
@@ -80,9 +83,9 @@ export default async function authRoutes(app: FastifyInstance) {
 
     reply.setCookie(REFRESH_COOKIE, refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: COOKIE_SECURE,
       sameSite: 'strict',
-      path: '/auth/refresh',
+      path: '/',
       maxAge: COOKIE_MAX_AGE / 1000,
     })
 
@@ -122,9 +125,9 @@ export default async function authRoutes(app: FastifyInstance) {
 
     reply.setCookie(REFRESH_COOKIE, newRefreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: COOKIE_SECURE,
       sameSite: 'strict',
-      path: '/auth/refresh',
+      path: '/',
       maxAge: COOKIE_MAX_AGE / 1000,
     })
 
@@ -137,7 +140,7 @@ export default async function authRoutes(app: FastifyInstance) {
     if (token) {
       await prisma.refreshToken.deleteMany({ where: { token } })
     }
-    reply.clearCookie(REFRESH_COOKIE, { path: '/auth/refresh' })
+    reply.clearCookie(REFRESH_COOKIE, { path: '/' })
     return { ok: true }
   })
 
