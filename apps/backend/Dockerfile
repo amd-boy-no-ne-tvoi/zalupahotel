@@ -4,20 +4,22 @@ RUN npm install -g pnpm
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY apps/backend/package.json ./apps/backend/
 COPY packages/ ./packages/
-RUN pnpm install --frozen-lockfile --filter pet-hotel-backend...
+RUN pnpm install --frozen-lockfile --filter @pet-hotel/backend...
 
 FROM node:20-alpine AS build
 WORKDIR /app
+RUN apk add --no-cache openssl
 RUN npm install -g pnpm
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/apps/backend/node_modules ./apps/backend/node_modules
 COPY . .
 WORKDIR /app/apps/backend
-RUN pnpm build
 RUN pnpm exec prisma generate
+RUN pnpm build
 
 FROM node:20-alpine AS runner
 WORKDIR /app
+RUN apk add --no-cache openssl
 RUN npm install -g pnpm
 ENV NODE_ENV=production
 

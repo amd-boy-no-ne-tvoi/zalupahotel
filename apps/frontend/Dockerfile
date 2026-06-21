@@ -4,7 +4,7 @@ RUN npm install -g pnpm
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY apps/frontend/package.json ./apps/frontend/
 COPY packages/ ./packages/
-RUN pnpm install --frozen-lockfile --filter pet-hotel-frontend...
+RUN pnpm install --frozen-lockfile --filter frontend...
 
 FROM node:20-alpine AS build
 WORKDIR /app
@@ -13,6 +13,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/apps/frontend/node_modules ./apps/frontend/node_modules
 COPY . .
 WORKDIR /app/apps/frontend
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
 RUN pnpm build
 
 FROM nginx:alpine AS runner
