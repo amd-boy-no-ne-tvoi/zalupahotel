@@ -1,0 +1,36 @@
+.wrap { display: block; }
+.label { font-size: 13px; font-weight: 700; color: var(--text-sub); display: block; margin-bottom: 6px; }
+
+.dropzone {
+  border: 2px dashed rgba(255,255,255,0.15); border-radius: var(--radius-md);
+  cursor: pointer; transition: border-color 0.2s, background 0.2s;
+  overflow: hidden;
+}
+.dropzone:hover { border-color: rgba(125,211,252,0.4); background: rgba(125,211,252,0.04); }
+.uploading { border-color: rgba(125,211,252,0.5); opacity: 0.7; pointer-events: none; }
+
+.placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 110px; gap: 6px;
+  color: var(--text-muted); font-size: 13px; padding: 16px;
+}
+.placeholder span:first-child { font-size: 28px; }
+.hint { font-size: 11px; color: rgba(255,255,255,0.25); }
+
+.preview { position: relative; }
+.preview img { display: block; width: 100%; height: auto; }
+.remove {
+  position: absolute; top: 6px; right: 6px;
+  background: rgba(0,0,0,0.6); border: none; border-radius: 50%;
+  color: #fff; width: 24px; height: 24px; font-size: 12px;
+  cursor: pointer; display: grid; place-items: center;
+}
+
+.spinner {
+  width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.2);
+  border-top-color: #a5f3fc; border-radius: 50%;
+  animation: spin 0.7s linear infinite; display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error { font-size: 12px; color: #fca5a5; margin-top: 4px; }

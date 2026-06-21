@@ -1,0 +1,105 @@
+.banner {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    position: fixed;
+    bottom: calc(64px + env(safe-area-inset-bottom, 0px) + 8px);
+    left: 12px;
+    right: 12px;
+    z-index: 190;
+
+    background: rgba(10, 20, 40, 0.96);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(165, 243, 252, 0.25);
+    border-radius: 18px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(165, 243, 252, 0.08);
+
+    animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+
+  .icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .text strong {
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .text span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .shareIcon {
+    display: inline-flex;
+    align-items: center;
+    color: #a5f3fc;
+    vertical-align: middle;
+  }
+
+  .installBtn {
+    background: linear-gradient(135deg, #a5f3fc, #7dd3fc);
+    color: #06101e;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.15s, box-shadow 0.15s;
+    white-space: nowrap;
+  }
+
+  .installBtn:active {
+    transform: scale(0.96);
+  }
+
+  .close {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.5);
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .close:active {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}

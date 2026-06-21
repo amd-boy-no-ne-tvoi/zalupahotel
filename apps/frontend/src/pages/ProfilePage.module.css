@@ -1,0 +1,70 @@
+.page { max-width: 860px; margin: 0 auto; }
+
+.header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 28px;
+}
+.title { font-size: clamp(24px,4vw,36px); font-weight: 800; letter-spacing: -0.04em; }
+.sub { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+.badge {
+  padding: 8px 16px; border-radius: 999px; border: 1px solid var(--glass-border);
+  background: var(--item-bg); color: var(--text-muted); font-size: 13px;
+  white-space: nowrap;
+}
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+.card { border-radius: 28px; padding: 28px; }
+
+.cardTitle {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 18px; font-weight: 800; margin-bottom: 22px;
+}
+.cardIcon {
+  font-size: 18px; width: 40px; height: 40px; display: grid; place-items: center;
+  border-radius: 12px; background: var(--accent-dim); flex-shrink: 0;
+}
+
+.form { display: flex; flex-direction: column; gap: 16px; }
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field span { font-size: 13px; font-weight: 700; color: var(--text-sub); }
+.field input {
+  width: 100%; background: var(--input-bg); border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md); color: var(--input-text); padding: 12px 14px; font-size: 14px;
+  outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field input::placeholder { color: var(--input-placeholder); }
+.field input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-glow); }
+
+.btnPrimary {
+  background: linear-gradient(135deg, var(--btn-primary-from), var(--btn-primary-to));
+  color: var(--btn-primary-text); border: none;
+  border-radius: var(--radius-md); padding: 12px; font-size: 14px; font-weight: 800;
+  cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; margin-top: 4px;
+}
+.btnPrimary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 24px var(--accent-glow); }
+.btnPrimary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.error { color: #fca5a5; font-size: 13px; }
+.success { color: #86efac; font-size: 13px; }
+
+.fullCard { grid-column: 1 / -1; }
+
+.cardHint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .grid { grid-template-columns: 1fr; }
+  .header { flex-direction: column; }
+  .fullCard { grid-column: auto; }
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

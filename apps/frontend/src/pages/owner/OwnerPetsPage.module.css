@@ -1,0 +1,64 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.photoWrap {
+  height: 160px;
+  background: var(--item-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.photo { width: 100%; height: 100%; object-fit: cover; }
+
+.photoPlaceholder { font-size: 56px; }
+
+.info {
+  padding: 16px 18px 10px;
+  flex: 1;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.notes {
+  font-size: 13px;
+  color: var(--text-sub);
+  line-height: 1.5;
+}
+
+.reportsBtn {
+  margin: 0 18px 16px;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  background: var(--badge-active-bg);
+  border: 1px solid var(--badge-active-border);
+  color: var(--badge-active-color);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.reportsBtn:hover { opacity: 0.8; }

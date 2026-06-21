@@ -1,0 +1,80 @@
+/* Bottom navigation bar — only visible on mobile */
+.nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+
+    background: var(--nav-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-top: 1px solid var(--nav-border);
+    transition: background 0.3s ease, border-color 0.3s ease;
+
+    /* iPhone home indicator safe area */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 10px 4px 8px;
+    text-decoration: none;
+    color: var(--nav-text);
+    transition: color 0.15s;
+    min-height: 56px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .item:active {
+    background: var(--nav-tap);
+  }
+
+  .item.active {
+    color: var(--accent);
+  }
+
+  .icon {
+    font-size: 22px;
+    line-height: 1;
+    transition: transform 0.15s;
+  }
+
+  .item.active .icon {
+    transform: translateY(-1px);
+  }
+
+  .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  /* Active indicator dot above icon */
+  .item.active::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+  }
+
+  .item {
+    position: relative;
+  }
+}

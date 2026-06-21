@@ -1,0 +1,111 @@
+.page { max-width: 1100px; margin: 0 auto; }
+
+.pageHeader {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 28px;
+}
+.pageHeader h1 { font-size: clamp(24px,4vw,36px); font-weight: 800; letter-spacing: -0.04em; }
+.subtitle { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+.loading { display: flex; align-items: center; justify-content: center; min-height: 40vh; color: var(--text-muted); }
+
+.empty {
+  border-radius: var(--radius-lg); padding: 60px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.empty span { font-size: 48px; }
+.empty p { color: var(--text-muted); font-size: 16px; }
+
+/* Stays cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+
+.stayCard { border-radius: var(--radius-lg); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+
+.cardTop { display: flex; align-items: flex-start; gap: 14px; }
+.petIcon { font-size: 32px; width: 56px; height: 56px; display: grid; place-items: center; border-radius: 16px; background: var(--accent-dim); flex-shrink: 0; }
+.petInfo { flex: 1; }
+.petName { font-size: 18px; font-weight: 800; }
+.petMeta { color: var(--text-muted); font-size: 13px; margin-top: 2px; }
+.petOwner { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+.cageBadge { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.cageBadge span:first-child { font-weight: 800; font-size: 16px; }
+.cageZone { color: var(--text-muted); font-size: 12px; }
+
+.cardMeta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--text-muted); }
+.reported { color: #86efac; font-weight: 600; }
+.notReported { color: #fbbf24; font-weight: 600; }
+
+.cardActions { display: flex; gap: 10px; align-items: stretch; }
+
+.btnReport {
+  flex: 1; background: linear-gradient(135deg, var(--btn-primary-from), var(--btn-primary-to));
+  color: var(--btn-primary-text);
+  border: none; border-radius: var(--radius-md); padding: 10px 16px;
+  font-size: 14px; font-weight: 800; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+}
+.btnReport:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 24px var(--accent-glow); }
+.btnReport:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btnPrimary {
+  background: linear-gradient(135deg, var(--btn-primary-from), var(--btn-primary-to));
+  color: var(--btn-primary-text);
+  border: none; border-radius: var(--radius-md); padding: 10px 20px;
+  font-size: 14px; font-weight: 800; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.btnPrimary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px var(--accent-glow); }
+
+.btnSecondary {
+  background: var(--item-bg); color: var(--text); border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md); padding: 10px 16px; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s; white-space: nowrap;
+  display: flex; align-items: center; justify-content: center;
+}
+.btnSecondary:hover { background: var(--surface-hover); }
+
+/* Reports list */
+.reportList { display: flex; flex-direction: column; gap: 16px; }
+.reportCard { border-radius: var(--radius-lg); padding: 20px 24px; display: flex; flex-direction: column; gap: 12px; }
+.reportCardHeader { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.reportPet { font-size: 16px; font-weight: 800; }
+.reportMeta { color: var(--text-muted); font-size: 14px; }
+.reportRight { display: flex; align-items: center; gap: 10px; }
+.reportDate { color: var(--text-muted); font-size: 13px; }
+
+.statusBadge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; border: 1px solid transparent; }
+.statusBadge.adaptation { background: rgba(251,191,36,0.15); color: #fbbf24; border-color: rgba(251,191,36,0.3); }
+.statusBadge.calm       { background: var(--badge-calm-bg); color: var(--badge-calm-color); border-color: var(--badge-calm-border); }
+.statusBadge.active     { background: var(--badge-active-bg); color: var(--badge-active-color); border-color: var(--badge-active-border); }
+.statusBadge.needs_control { background: rgba(252,165,165,0.15); color: #fca5a5; border-color: rgba(252,165,165,0.3); }
+
+.metricRow { display: flex; flex-wrap: wrap; gap: 8px; }
+.metricChip { background: var(--item-bg); border: 1px solid var(--glass-border); border-radius: 999px; padding: 4px 10px; font-size: 12px; color: var(--text-muted); }
+.metricChip b { color: var(--text); }
+
+.alertRow { font-size: 13px; color: #fbbf24; background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2); border-radius: var(--radius-sm); padding: 8px 12px; }
+
+.editLink { font-size: 12px; color: var(--link-accent); text-decoration: none; font-weight: 600; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--link-accent-border); transition: background 0.15s; white-space: nowrap; }
+.editLink:hover { background: var(--link-accent-hover); }
+
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .pageHeader { flex-direction: column; align-items: stretch; }
+  .btnPrimary { width: 100%; text-align: center; }
+  .cards { grid-template-columns: 1fr; }
+  .cardActions { flex-direction: column; }
+  .btnReport, .btnSecondary { flex: none; width: 100%; text-align: center; }
+  .reportCardHeader { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .reportRight { width: 100%; justify-content: space-between; }
+}
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .cardActions {
+    flex-wrap: wrap;
+  }
+}

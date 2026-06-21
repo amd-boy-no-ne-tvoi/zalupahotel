@@ -1,0 +1,147 @@
+.wrap {
+  position: relative;
+  width: 100%;
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--input-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--input-text);
+  padding: 11px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  min-height: 46px;
+}
+
+.trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.triggerOpen {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+.placeholder {
+  flex: 1;
+  color: var(--input-placeholder);
+}
+
+.selectedLabel {
+  flex: 1;
+  font-weight: 600;
+}
+
+.selectedSub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.arrow {
+  font-size: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.dropdown {
+  /* position + top + left + width + z-index set inline via JS (portal) */
+  background: var(--modal-bg, var(--glass-bg));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+.searchWrap {
+  padding: 10px;
+  border-bottom: 1px solid var(--item-border);
+}
+
+.searchInput {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--item-border);
+  border-radius: var(--radius-sm);
+  color: var(--input-text);
+  padding: 8px 12px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.searchInput::placeholder {
+  color: var(--input-placeholder);
+}
+
+.searchInput:focus {
+  border-color: var(--accent);
+}
+
+.list {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+  font-family: inherit;
+}
+
+.item:hover {
+  background: var(--surface-hover);
+}
+
+.itemActive {
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.itemActive:hover {
+  background: var(--accent-dim);
+}
+
+.itemLabel {
+  flex: 1;
+}
+
+.itemSub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.empty {
+  padding: 16px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+@media (max-width: 400px) {
+  .trigger {
+    font-size: 13px;
+    padding: 9px 12px;
+  }
+}

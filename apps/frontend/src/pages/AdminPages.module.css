@@ -1,0 +1,302 @@
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.pageHeader h1 {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.tableWrap {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th {
+  text-align: left;
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--glass-border);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--item-border);
+  vertical-align: middle;
+  font-size: 13px;
+}
+
+/* Compress column to minimum content width */
+.table .compact {
+  white-space: nowrap;
+  width: 1%;
+}
+
+/* Short data cells */
+.table .nowrap {
+  white-space: nowrap;
+  width: 1%;
+}
+
+/* Actions column */
+.table .actions {
+  white-space: nowrap;
+  width: 1%;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.table tr:last-child td { border-bottom: none; }
+
+.table tr:hover td { background: var(--surface-hover); }
+
+.muted { color: var(--text-muted); }
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+.badge.admin    { background: rgba(167,139,250,0.15); color: #c4b5fd; border-color: rgba(167,139,250,0.3); }
+.badge.employee { background: var(--badge-active-bg); color: var(--badge-employee-color); border-color: var(--badge-active-border); }
+.badge.owner    { background: var(--badge-calm-bg); color: var(--badge-owner-color); border-color: var(--badge-calm-border); }
+.badge.free     { background: var(--badge-calm-bg); color: var(--badge-calm-color); border-color: var(--badge-calm-border); }
+.badge.occupied { background: rgba(252,165,165,0.15); color: #fca5a5; border-color: rgba(252,165,165,0.3); }
+
+.actions {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, var(--btn-primary-from), var(--btn-primary-to));
+  color: var(--btn-primary-text);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px var(--accent-glow);
+}
+
+.btnPrimary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btnSecondary {
+  background: var(--item-bg);
+  color: var(--text);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btnSecondary:hover { background: var(--surface-hover); }
+
+.btnSm {
+  background: var(--item-bg);
+  color: var(--text);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.btnSm:hover:not(:disabled) { background: var(--surface-hover); }
+.btnSm:disabled { opacity: 0.4; cursor: not-allowed; }
+.btnSm.danger { color: #fca5a5; border-color: rgba(252,165,165,0.3); }
+.btnSm.danger:hover { background: rgba(252,165,165,0.1); }
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.fullCol { grid-column: 1 / -1; }
+
+.formError {
+  color: #fca5a5;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .formGrid { grid-template-columns: 1fr; }
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .btnPrimary { width: 100%; text-align: center; }
+
+  .tableWrap {
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-md);
+  }
+
+  .table th,
+  .table td {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .btnSm {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+}
+
+/* Filter bar */
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.filterSearch {
+  flex: 1;
+  min-width: 180px;
+  max-width: 280px;
+  background: var(--input-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--input-text);
+  padding: 9px 14px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+.filterSearch::placeholder { color: var(--input-placeholder); }
+.filterSearch:focus { border-color: var(--accent); }
+.filterCount {
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  margin-left: auto;
+}
+.clearBtn {
+  background: none;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  padding: 8px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+.clearBtn:hover { background: var(--surface-hover); }
+/* Sortable header */
+.thSort {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+}
+.thSort:hover { color: var(--text); }
+/* Filter select wrapper */
+.filterSelectWrap { width: 160px; flex-shrink: 0; }
+
+@media (max-width: 600px) {
+  .filterBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filterSearch {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .filterSelectWrap {
+    width: 100%;
+  }
+  .filterCount {
+    margin-left: 0;
+    text-align: right;
+  }
+}
+
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  .tableWrap {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 480px) {
+  .table th,
+  .table td {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+}

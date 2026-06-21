@@ -1,0 +1,40 @@
+.root {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* --- Desktop --- */
+.sidebarWrap {
+  flex-shrink: 0;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+}
+
+.content {
+  padding: 36px 40px;
+}
+
+/* --- Mobile --- */
+@media (max-width: 768px) {
+  .root {
+    flex-direction: column;
+  }
+
+  /* Hide the sidebar entirely on mobile — bottom nav takes over */
+  .sidebarWrap {
+    display: none;
+  }
+
+  .main {
+    /* Extra bottom padding so content isn't hidden behind bottom nav + safe area */
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px) + 16px);
+  }
+
+  .content {
+    padding: 20px 16px;
+  }
+}

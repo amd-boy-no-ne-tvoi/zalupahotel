@@ -1,0 +1,11 @@
+{
+  "name": "pet-hotel",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel --filter './apps/*' dev",
+    "build": "pnpm --filter './packages/*' build && pnpm --filter './apps/*' build"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}

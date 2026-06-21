@@ -1,0 +1,224 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Accent */
+  --accent: #a5f3fc;
+  --accent-dim: rgba(125, 211, 252, 0.15);
+  --accent-glow: rgba(125, 211, 252, 0.12);
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.14);
+
+  /* Text */
+  --text: #fff;
+  --text-muted: rgba(255, 255, 255, 0.55);
+  --text-sub: rgba(255, 255, 255, 0.82);
+
+  /* Surfaces */
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --surface-active: rgba(125, 211, 252, 0.12);
+  --surface-active-border: rgba(125, 211, 252, 0.2);
+
+  /* Bottom nav */
+  --nav-bg: rgba(5, 8, 20, 0.88);
+  --nav-border: rgba(255, 255, 255, 0.1);
+  --nav-text: rgba(255, 255, 255, 0.45);
+  --nav-tap: rgba(255, 255, 255, 0.06);
+
+  /* Body background */
+  --body-bg-base: #050814;
+  --body-glow-1: rgba(0, 225, 255, 0.22);
+  --body-glow-2: rgba(155, 92, 255, 0.22);
+  --body-glow-3: rgba(0, 110, 255, 0.20);
+
+  /* Radii */
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+
+  /* Modal */
+  --modal-bg: rgba(10, 18, 42, 0.96);
+  --modal-input-bg: rgba(255, 255, 255, 0.1);
+
+  /* Form inputs */
+  --input-bg: rgba(255, 255, 255, 0.08);
+  --input-text: #ffffff;
+  --input-placeholder: rgba(255, 255, 255, 0.3);
+
+  /* Card items (metrics, activities, observation rows) */
+  --item-bg: rgba(255, 255, 255, 0.05);
+  --item-border: rgba(255, 255, 255, 0.1);
+
+  /* Primary button */
+  --btn-primary-from: #ffffff;
+  --btn-primary-to: #bff3ff;
+  --btn-primary-text: #06101e;
+
+  /* Accent-coloured links / chips */
+  --link-accent: #a5f3fc;
+  --link-accent-border: rgba(125, 211, 252, 0.25);
+  --link-accent-hover: rgba(125, 211, 252, 0.1);
+
+  /* Status badge colours */
+  --badge-calm-color: #86efac;
+  --badge-calm-bg: rgba(134, 239, 172, 0.15);
+  --badge-calm-border: rgba(134, 239, 172, 0.3);
+  --badge-active-color: #a5f3fc;
+  --badge-active-bg: rgba(125, 211, 252, 0.15);
+  --badge-active-border: rgba(125, 211, 252, 0.3);
+  --badge-employee-color: #a5f3fc;
+  --badge-owner-color: #86efac;
+}
+
+/* Light theme overrides */
+:root[data-theme="light"] {
+  --accent: #0284c7;
+  --accent-dim: rgba(2, 132, 199, 0.12);
+  --accent-glow: rgba(2, 132, 199, 0.08);
+
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(0, 0, 0, 0.08);
+
+  --text: #0f172a;
+  --text-muted: rgba(15, 23, 42, 0.5);
+  --text-sub: rgba(15, 23, 42, 0.75);
+
+  --surface: rgba(255, 255, 255, 0.65);
+  --surface-hover: rgba(0, 0, 0, 0.04);
+  --surface-active: rgba(2, 132, 199, 0.1);
+  --surface-active-border: rgba(2, 132, 199, 0.2);
+
+  --nav-bg: rgba(248, 250, 252, 0.94);
+  --nav-border: rgba(0, 0, 0, 0.08);
+  --nav-text: rgba(15, 23, 42, 0.45);
+  --nav-tap: rgba(0, 0, 0, 0.04);
+
+  --body-bg-base: #f0f9ff;
+  --body-glow-1: rgba(0, 225, 255, 0.09);
+  --body-glow-2: rgba(155, 92, 255, 0.09);
+  --body-glow-3: rgba(0, 110, 255, 0.07);
+
+  /* Modal */
+  --modal-bg: rgba(248, 250, 252, 0.97);
+  --modal-input-bg: rgba(0, 0, 0, 0.06);
+
+  /* Form inputs */
+  --input-bg: rgba(0, 0, 0, 0.05);
+  --input-text: #0f172a;
+  --input-placeholder: rgba(15, 23, 42, 0.35);
+
+  /* Card items */
+  --item-bg: rgba(0, 0, 0, 0.03);
+  --item-border: rgba(0, 0, 0, 0.1);
+
+  /* Primary button — solid accent in light */
+  --btn-primary-from: #0284c7;
+  --btn-primary-to: #0ea5e9;
+  --btn-primary-text: #ffffff;
+
+  /* Accent links / chips */
+  --link-accent: #0369a1;
+  --link-accent-border: rgba(3, 105, 161, 0.3);
+  --link-accent-hover: rgba(2, 132, 199, 0.1);
+
+  /* Status badge colours — darker for legibility on white */
+  --badge-calm-color: #15803d;
+  --badge-calm-bg: rgba(21, 128, 61, 0.1);
+  --badge-calm-border: rgba(21, 128, 61, 0.25);
+  --badge-active-color: #0369a1;
+  --badge-active-bg: rgba(3, 105, 161, 0.1);
+  --badge-active-border: rgba(3, 105, 161, 0.25);
+  --badge-employee-color: #0369a1;
+  --badge-owner-color: #15803d;
+}
+
+/* System preference fallback (when no data-theme set yet) */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]):not([data-theme="light"]) {
+    --accent: #0284c7;
+    --accent-dim: rgba(2, 132, 199, 0.12);
+    --accent-glow: rgba(2, 132, 199, 0.08);
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --text: #0f172a;
+    --text-muted: rgba(15, 23, 42, 0.5);
+    --text-sub: rgba(15, 23, 42, 0.75);
+    --surface: rgba(255, 255, 255, 0.65);
+    --surface-hover: rgba(0, 0, 0, 0.04);
+    --surface-active: rgba(2, 132, 199, 0.1);
+    --surface-active-border: rgba(2, 132, 199, 0.2);
+    --nav-bg: rgba(248, 250, 252, 0.94);
+    --nav-border: rgba(0, 0, 0, 0.08);
+    --nav-text: rgba(15, 23, 42, 0.45);
+    --nav-tap: rgba(0, 0, 0, 0.04);
+    --body-bg-base: #f0f9ff;
+    --body-glow-1: rgba(0, 225, 255, 0.09);
+    --body-glow-2: rgba(155, 92, 255, 0.09);
+    --body-glow-3: rgba(0, 110, 255, 0.07);
+    --modal-bg: rgba(248, 250, 252, 0.97);
+    --modal-input-bg: rgba(0, 0, 0, 0.06);
+    --input-bg: rgba(0, 0, 0, 0.05);
+    --input-text: #0f172a;
+    --input-placeholder: rgba(15, 23, 42, 0.35);
+    --item-bg: rgba(0, 0, 0, 0.03);
+    --item-border: rgba(0, 0, 0, 0.1);
+    --btn-primary-from: #0284c7;
+    --btn-primary-to: #0ea5e9;
+    --btn-primary-text: #ffffff;
+    --link-accent: #0369a1;
+    --link-accent-border: rgba(3, 105, 161, 0.3);
+    --link-accent-hover: rgba(2, 132, 199, 0.1);
+    --badge-calm-color: #15803d;
+    --badge-calm-bg: rgba(21, 128, 61, 0.1);
+    --badge-calm-border: rgba(21, 128, 61, 0.25);
+    --badge-active-color: #0369a1;
+    --badge-active-bg: rgba(3, 105, 161, 0.1);
+    --badge-active-border: rgba(3, 105, 161, 0.25);
+    --badge-employee-color: #0369a1;
+    --badge-owner-color: #15803d;
+  }
+}
+
+html, body, #root {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 12% 8%, var(--body-glow-1), transparent 30%),
+    radial-gradient(circle at 92% 18%, var(--body-glow-2), transparent 34%),
+    radial-gradient(circle at 45% 100%, var(--body-glow-3), transparent 38%),
+    var(--body-bg-base);
+  background-attachment: fixed;
+  transition: background 0.3s ease, color 0.2s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+input, select, textarea, button {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

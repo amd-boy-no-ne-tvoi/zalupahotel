@@ -1,0 +1,202 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  admin
+  employee
+  owner
+}
+
+enum DayStatus {
+  adaptation
+  calm
+  active
+  needs_control
+}
+
+enum StayStatus {
+  active
+  completed
+}
+
+enum CageType {
+  dog
+  cat
+  other
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  role         Role
+  name         String
+  phone        String?
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  pets              Pet[]
+  staysAsEmployee   Stay[]             @relation("EmployeeStays")
+  reports           Report[]
+  stayNotes         StayNote[]
+  refreshTokens     RefreshToken[]
+  pushSubscriptions PushSubscription[]
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String   @map("user_id")
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("refresh_tokens")
+}
+
+model Pet {
+  id       String  @id @default(uuid())
+  name     String
+  species  String
+  breed    String?
+  ownerId  String  @map("owner_id")
+  photoUrl String? @map("photo_url")
+  notes    String?
+
+  owner  User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  stays  Stay[]
+
+  @@map("pets")
+}
+
+model Cage {
+  id         String   @id @default(uuid())
+  number     String   @unique
+  zone       String
+  type       CageType
+  isOccupied Boolean  @default(false) @map("is_occupied")
+
+  stays Stay[]
+
+  @@map("cages")
+}
+
+model Stay {
+  id              String     @id @default(uuid())
+  petId           String     @map("pet_id")
+  cageId          String     @map("cage_id")
+  employeeId      String     @map("employee_id")
+  checkIn         DateTime   @map("check_in")
+  checkOut        DateTime?  @map("check_out")
+  plannedCheckOut DateTime?  @map("planned_check_out")
+  status          StayStatus @default(active)
+  createdAt       DateTime   @default(now()) @map("created_at")
+
+  pet      Pet        @relation(fields: [petId], references: [id])
+  cage     Cage       @relation(fields: [cageId], references: [id])
+  employee User       @relation("EmployeeStays", fields: [employeeId], references: [id])
+  reports  Report[]
+  notes    StayNote[]
+
+  @@map("stays")
+}
+
+model StayNote {
+  id        String   @id @default(uuid())
+  stayId    String   @map("stay_id")
+  authorId  String   @map("author_id")
+  content   String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  stay   Stay @relation(fields: [stayId], references: [id], onDelete: Cascade)
+  author User @relation(fields: [authorId], references: [id])
+
+  @@map("stay_notes")
+}
+
+model Report {
+  id         String    @id @default(uuid())
+  stayId     String    @map("stay_id")
+  employeeId String    @map("employee_id")
+  date       DateTime  @db.Date
+  dayStatus  DayStatus @map("day_status")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @map("updated_at")
+
+  photoUrls    String[]            @default([]) @map("photo_urls")
+  ownerText    String?             @map("owner_text")
+
+  stay         Stay                @relation(fields: [stayId], references: [id])
+  employee     User                @relation(fields: [employeeId], references: [id])
+  metrics      ReportMetric[]
+  activities   ReportActivity[]
+  observations ReportObservation[]
+
+  @@unique([stayId, date])
+  @@map("reports")
+}
+
+model ReportMetric {
+  id       String @id @default(uuid())
+  reportId String @map("report_id")
+  category String
+  value    String
+  comment  String?
+
+  report Report @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@map("report_metrics")
+}
+
+model ReportActivity {
+  id           String  @id @default(uuid())
+  reportId     String  @map("report_id")
+  activityType String  @map("activity_type")
+  completed    Boolean @default(false)
+
+  report Report @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@map("report_activities")
+}
+
+model ReportObservation {
+  id            String  @id @default(uuid())
+  reportId      String  @map("report_id")
+  observation   String
+  action        String?
+  notifyOwner   Boolean @default(false) @map("notify_owner")
+
+  report Report @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  @@map("report_observations")
+}
+
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("settings")
+}
+
+model PushSubscription {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  endpoint  String   @unique
+  p256dh    String
+  auth      String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("push_subscriptions")
+}

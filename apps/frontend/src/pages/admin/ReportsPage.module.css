@@ -1,0 +1,140 @@
+.filters {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 16px 20px; border-radius: var(--radius-lg); margin-bottom: 20px;
+}
+
+.searchInput {
+  flex: 1; min-width: 200px;
+  background: var(--input-bg); border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md); color: var(--input-text);
+  padding: 10px 14px; font-size: 14px; outline: none; transition: border-color 0.2s;
+}
+.searchInput::placeholder { color: var(--input-placeholder); }
+.searchInput:focus { border-color: var(--accent); }
+
+.filterSelect {
+  background: var(--input-bg); border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md); color: var(--input-text);
+  padding: 10px 14px; font-size: 14px; outline: none; cursor: pointer; appearance: none;
+}
+option { background: var(--body-bg-base, #071020); }
+
+.dateRange { display: flex; align-items: center; gap: 8px; }
+.dateInput {
+  background: var(--input-bg); border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md); color: var(--input-text);
+  padding: 10px 12px; font-size: 13px; outline: none; width: 120px; min-width: 0; transition: border-color 0.2s;
+}
+.dateInput:focus { border-color: var(--accent); }
+.dateSep { color: var(--text-muted); }
+
+.resetBtn {
+  background: rgba(252,165,165,0.1); border: 1px solid rgba(252,165,165,0.3);
+  border-radius: var(--radius-md); color: #fca5a5;
+  padding: 10px 14px; font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: background 0.2s; white-space: nowrap;
+}
+.resetBtn:hover { background: rgba(252,165,165,0.18); }
+
+.loading { color: var(--text-muted); padding: 40px; text-align: center; }
+
+.list { display: flex; flex-direction: column; gap: 10px; }
+
+.card { border-radius: var(--radius-lg); overflow: hidden; }
+
+.cardHeader {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; padding: 16px 22px; cursor: pointer; transition: background 0.15s;
+}
+.cardHeader:hover { background: var(--surface-hover); }
+
+.cardLeft { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
+.petName { font-size: 15px; font-weight: 800; white-space: nowrap; }
+.cardMeta { color: var(--text-muted); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.cardRight { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.alertDot { color: #fbbf24; font-size: 15px; }
+.meta { color: var(--text-muted); font-size: 13px; }
+.date { color: var(--text-muted); font-size: 13px; white-space: nowrap; }
+.chevron { color: var(--text-muted); font-size: 11px; }
+
+.statusBadge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; border: 1px solid transparent; white-space: nowrap; }
+.adaptation    { background: rgba(251,191,36,0.15);  color: #fbbf24; border-color: rgba(251,191,36,0.3); }
+.calm          { background: var(--badge-calm-bg);   color: var(--badge-calm-color); border-color: var(--badge-calm-border); }
+.active        { background: var(--badge-active-bg); color: var(--badge-active-color); border-color: var(--badge-active-border); }
+.needs_control { background: rgba(252,165,165,0.15); color: #fca5a5; border-color: rgba(252,165,165,0.3); }
+
+.cardBody { padding: 4px 22px 18px; border-top: 1px solid var(--item-border); }
+
+.metricsGrid { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 10px; }
+.metricItem { background: var(--item-bg); border: 1px solid var(--item-border); border-radius: 12px; padding: 8px 12px; min-width: 100px; }
+.metricName { display: block; font-size: 10px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.metricValue { display: block; font-size: 14px; font-weight: 800; margin-top: 2px; }
+.metricComment { display: block; font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+.activitiesRow { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.actChip { background: var(--badge-calm-bg); border: 1px solid var(--badge-calm-border); border-radius: 999px; padding: 4px 10px; font-size: 12px; color: var(--badge-calm-color); }
+
+.observations { display: flex; flex-direction: column; gap: 6px; }
+.obsItem { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 13px; color: var(--text-muted); padding: 6px 10px; border-radius: 10px; background: var(--item-bg); }
+.obsAlert { background: rgba(251,191,36,0.07); border: 1px solid rgba(251,191,36,0.15); color: var(--text-sub); }
+.obsAction { color: var(--text-muted); }
+.notifyBadge { background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.3); border-radius: 999px; padding: 2px 8px; font-size: 11px; color: #fbbf24; font-weight: 700; white-space: nowrap; }
+
+@media (max-width: 700px) {
+  .filters {
+    flex-direction: column;
+  }
+  .dateRange {
+    flex-wrap: wrap;
+  }
+  .dateInput {
+    flex: 1;
+    min-width: 100px;
+  }
+  .searchInput {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 14px 16px;
+  }
+  .cardLeft {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    min-width: 0;
+    width: 100%;
+  }
+  .petName {
+    white-space: normal;
+  }
+  .cardMeta {
+    white-space: normal;
+    overflow: visible;
+  }
+  .cardRight {
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 100%;
+  }
+  .meta {
+    display: none;
+  }
+  .cardBody {
+    padding: 8px 16px 16px;
+  }
+  .metricsGrid {
+    gap: 6px;
+  }
+  .metricItem {
+    min-width: 80px;
+    padding: 6px 10px;
+  }
+}
